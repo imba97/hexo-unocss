@@ -1,0 +1,52 @@
+{
+  "name": "hexo-unocss",
+  "version": "0.0.1",
+  "description": "Support using unocsss when writing articles",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "rimraf build dist && tsc && concurrently \"tsc -w\" \"cross-env NODE_ENV=development rollup -c rollup.config.js -w --bundleConfigAsCjs\"",
+    "build": "rimraf build dist && tsc && cross-env NODE_ENV=production rollup -c rollup.config.js --bundleConfigAsCjs"
+  },
+  "keywords": [
+    "hexo",
+    "plugin",
+    "unocss"
+  ],
+  "author": "imba97",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "homepage": "https://github.com/imba97/hexo-unocss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imba97/hexo-unocss"
+  },
+  "bugs": {
+    "url": "https://github.com/imba97/hexo-unocss/issues"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/node": "^20.10.6",
+    "@unocss/cli": "^0.58.2",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "hexo": "^7.0.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.2"
+  },
+  "peerDependencies": {
+    "@unocss/cli": "^0.58.2",
+    "unocss": "^0.58.2"
+  },
+  "optionalDependencies": {
+    "@iconify/json": "^2.2.163"
+  }
+}
