@@ -24,27 +24,13 @@ hexo.extend.injector.register('head_end', () => {
   return css('css/uno.css')
 })
 
-const generateCss = async () => {
-  if (isDev) {
-    await generateCssWatch()
+const generateCss = once(async () => {
+  if (!isDev && !isGenerate) {
+    return Promise.resolve(true)
   }
 
-  if (isGenerate) {
-    await gerenateCssProduction()
-  }
-}
-
-const gerenateCssProduction = () => {
   return new Promise((resolve) => {
-    exec('npx unocss', () => {
-      resolve(true)
-    })
-  })
-}
-
-const generateCssWatch = once(() => {
-  return new Promise((resolve) => {
-    exec(`npx unocss -w`, () => {
+    exec(`npx unocss ${isDev ? '-w' : ''}`, () => {
       resolve(true)
     })
   })
