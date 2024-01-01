@@ -9,14 +9,14 @@ const isGenerate = !!~['g', 'generate'].indexOf(hexo.env.cmd)
 // hexo ready
 hexo.on('ready', async () => {
   if (isDev || isGenerate) {
-    gerenateCss()
+    await gerenateCss()
   }
 })
 
 // hexo 文章渲染后
 hexo.extend.filter.register('after_post_render', async (data) => {
   if (isDev) {
-    gerenateCss()
+    await gerenateCss()
   }
 
   return data
@@ -29,5 +29,9 @@ hexo.extend.injector.register('head_end', () => {
 })
 
 const gerenateCss = once(() => {
-  exec(`npx unocss ${isDev ? '-w' : ''}`)
+  return new Promise((resolve) => {
+    exec(`npx unocss ${isDev ? '-w' : ''}`, () => {
+      resolve(true)
+    })
+  })
 })
