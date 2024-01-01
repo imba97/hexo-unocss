@@ -1,3 +1,7 @@
 .github
 /build
 /src
+
+.prettierrc.json
+rollup.config.js
+tsconfig.json
