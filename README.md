@@ -2,14 +2,16 @@
 
 支持在文章中使用 `unocss`
 
+查看 [Demo](https://imba97.cn/archives/775/)
+
 # 使用
 
 ## 安装依赖
 
-安装插件和相关依赖（必选）
+安装插件和相关依赖
 
 ```bash
-pnpm add hexo-unocss unocss @unocss/cli
+npm install hexo-unocss unocss @unocss/cli
 ```
 
 ## 使用图标（可选）
@@ -17,7 +19,7 @@ pnpm add hexo-unocss unocss @unocss/cli
 全量安装图标库
 
 ```bash
-pnpm add @iconify/json
+npm install @iconify/json
 ```
 
 图标站：[Icônes](https://icones.js.org/)
