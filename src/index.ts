@@ -33,5 +33,9 @@ const generateCss = once(async () => {
     exec(`npx unocss ${isDev ? '-w' : ''}`, () => {
       resolve(true)
     })
+
+    if (isDev) {
+      resolve(true)
+    }
   })
 })
