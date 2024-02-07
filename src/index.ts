@@ -1,5 +1,3 @@
-/// <reference types="hexo" />
-
 import { once } from '@/utils'
 import { exec } from 'node:child_process'
 
