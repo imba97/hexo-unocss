@@ -11,7 +11,7 @@
 安装插件和相关依赖
 
 ```bash
-npm install hexo-unocss unocss @unocss/cli
+npm install hexo-unocss unocss
 ```
 
 ## 使用图标（可选）
@@ -38,12 +38,6 @@ export default defineConfig({
   content: {
     pipeline: {
       include: [/\.(md)($|\?)/]
-    }
-  },
-  cli: {
-    entry: {
-      patterns: ['source/**/*.md'],
-      outFile: 'source/css/uno.css'
     }
   }
 })

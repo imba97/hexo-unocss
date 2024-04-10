@@ -1,24 +1,16 @@
 import fs from 'node:fs'
-import unocss from 'unocss'
-import { resolve } from 'node:path'
-import { exec } from 'node:child_process'
+import Watcher from 'watcher'
+import { resolve as pathResolve } from 'node:path'
 
-import { get, once } from '@/utils'
+import { once } from '@/utils'
+import { readFiles } from '@/utils/fs'
+import { config } from '@/utils/config'
+import { unocssGenerateCss } from '@/utils/unocss'
 
 const isDev = !!~['s', 'server'].indexOf(hexo.env.cmd)
 const isGenerate = !!~['g', 'generate'].indexOf(hexo.env.cmd)
 
-const generator = unocss.createGenerator()
-
-/**
- * 是否开启插件
- */
-const isEnabled: boolean = get(hexo.config, 'unocss.enabled', false)
-
-/**
- * css 文件生成路径
- */
-const cssFile: string = get(hexo.config, 'unocss.file', 'css/uno.css')
+const contentMap: Map<string, string> = new Map()
 
 // hexo after init
 hexo.extend.filter.register('after_init', async () => {
@@ -36,13 +28,13 @@ hexo.extend.filter.register('after_post_render', async (data) => {
 hexo.extend.injector.register('head_end', () => {
   const css = hexo.extend.helper.get('css').bind(hexo)
   // hexo 生成 <link />
-  return css(cssFile)
+  return css(config.cssFile)
 })
 
 const generateCss = once(async () => {
   // 未开启
-  if (!isEnabled) {
-    const cssResolvePath = resolve(hexo.source_dir, cssFile)
+  if (!config.isEnabled) {
+    const cssResolvePath = pathResolve(hexo.source_dir, config.cssFile)
 
     // 删除文件
     if (fs.existsSync(cssResolvePath)) {
@@ -57,8 +49,25 @@ const generateCss = once(async () => {
   }
 
   return new Promise((resolve) => {
-    exec(`npx unocss ${isDev ? '-w' : ''}`, () => {
+    const watcher = new Watcher(config.posts)
+
+    watcher.on('ready', () => {
+      hexo.log.info('UnoCSS Watcher started')
+
+      const files = readFiles(config.posts)
+
+      files.forEach((file) => {
+        const fileResolvePath = pathResolve(hexo.base_dir, file)
+        const content = fs.readFileSync(fileResolvePath, 'utf-8')
+        contentMap.set(fileResolvePath, content)
+      })
+
       resolve(true)
+    })
+
+    watcher.on('change', (path) => {
+      contentMap.set(path, fs.readFileSync(path, 'utf-8'))
+      unocssGenerateCss(contentMap)
     })
 
     if (isDev) {
