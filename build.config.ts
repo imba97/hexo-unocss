@@ -7,6 +7,7 @@ export default defineBuildConfig({
   declaration: true,
   rollup: {
     emitCJS: true,
+    cjsBridge: true,
     alias: {
       entries: {
         '@': resolve(process.cwd(), 'src')
