@@ -2,13 +2,16 @@
   "name": "hexo-unocss",
   "version": "0.0.7",
   "description": "Support using unocsss when writing articles",
-  "main": "dist/index.js",
+  "main": "./dist/index.cjs",
   "type": "module",
   "scripts": {
-    "dev": "rimraf build dist && tsc && concurrently \"tsc -w\" \"cross-env NODE_ENV=development rollup -c rollup.config.js -w --bundleConfigAsCjs\"",
-    "build": "rimraf build dist && tsc && cross-env NODE_ENV=production rollup -c rollup.config.js --bundleConfigAsCjs",
+    "stub": "cross-env NODE_ENV=development unbuild --stub",
+    "build": "cross-env NODE_ENV=production unbuild",
     "lint": "eslint . --fix"
   },
+  "files": [
+    "./dist/index.cjs"
+  ],
   "keywords": [
     "hexo",
     "plugin",
@@ -29,10 +32,6 @@
     "url": "https://github.com/imba97/hexo-unocss/issues"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.10.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
@@ -44,8 +43,8 @@
     "hexo": "^7.0.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "rollup": "^4.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "unbuild": "^2.0.0"
   },
   "peerDependencies": {
     "unocss": "^0.58.2"
