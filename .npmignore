@@ -1,7 +1,7 @@
 .github
-/build
 /src
 
 .prettierrc.json
-rollup.config.js
+build.config.ts
+eslint.config.js
 tsconfig.json

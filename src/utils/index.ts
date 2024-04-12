@@ -14,3 +14,18 @@ export function once<T extends Function>(this: unknown, fn: T): T {
     return result
   } as unknown as T
 }
+
+export function get(obj: any, path: string, defaultValue: any = undefined) {
+  const pathArray = Array.isArray(path) ? path : path.split('.')
+  let current = obj
+
+  for (const key of pathArray) {
+    if (current === null || current === undefined) {
+      return defaultValue
+    }
+
+    current = current[key]
+  }
+
+  return current === undefined ? defaultValue : current
+}
