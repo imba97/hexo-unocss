@@ -1,5 +1,4 @@
 import fs from 'node:fs'
-import { resolve } from 'node:path'
 
 import unocss from 'unocss'
 import { loadConfig } from 'unconfig'

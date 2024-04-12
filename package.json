@@ -1,6 +1,6 @@
 {
   "name": "hexo-unocss",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Support using unocsss when writing articles",
   "main": "./dist/index.cjs",
   "type": "module",
@@ -46,14 +46,12 @@
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0"
   },
-  "peerDependencies": {
-    "unocss": "^0.58.2"
-  },
   "optionalDependencies": {
     "@iconify/json": "^2.2.163"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
-    "unconfig": "^0.3.12"
+    "unconfig": "^0.3.12",
+    "unocss": "^0.59.2"
   }
 }
