@@ -1,15 +1,29 @@
 import fs from 'node:fs'
-import unocss from 'unocss'
 import { resolve } from 'node:path'
 
-import { config } from '@/utils/config'
+import unocss from 'unocss'
+import { loadConfig } from 'unconfig'
 
-const generator = unocss.createGenerator({
-  // TODO: configFile 不生效
-  configFile: resolve(hexo.base_dir, 'uno.config.ts')
-})
+import { config } from '@/utils/config'
+import { IS_DEV } from '@/utils/constants'
+
+import type { UserConfig } from 'unocss'
 
 export const unocssGenerateCss = async (contentMap: Map<string, string>) => {
-  const { css } = await generator.generate(new Set(contentMap.values()))
-  fs.writeFileSync(config.writeCssFile, css)
+  const { config: unocssConfig } = await loadConfig<UserConfig>({
+    sources: {
+      files: ['unocss.config', 'uno.config']
+    },
+    cwd: hexo.base_dir
+  })
+
+  const generator = unocss.createGenerator(unocssConfig)
+
+  const { css, matched } = await generator.generate([...contentMap].join(''))
+
+  if (IS_DEV) {
+    hexo.log.info(`UnoCSS matched ${[...matched].length}`)
+  }
+
+  fs.writeFileSync(config.writeCssFile, css, 'utf-8')
 }

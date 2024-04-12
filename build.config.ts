@@ -13,7 +13,7 @@ export default defineBuildConfig({
       }
     },
     esbuild: {
-      // minify: process.env.NODE_ENV === 'production'
+      minify: process.env.NODE_ENV === 'production'
     },
     inlineDependencies: true
   }
