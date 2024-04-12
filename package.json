@@ -46,12 +46,14 @@
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0"
   },
+  "peerDependencies": {
+    "unocss": "^0.58.2"
+  },
   "optionalDependencies": {
     "@iconify/json": "^2.2.163"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
-    "unconfig": "^0.3.12",
-    "unocss": "^0.59.2"
+    "unconfig": "^0.3.12"
   }
 }
