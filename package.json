@@ -1,6 +1,6 @@
 {
   "name": "hexo-unocss",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Support using unocsss when writing articles",
   "main": "./dist/index.cjs",
   "type": "module",
@@ -20,8 +20,8 @@
   "author": "imba97",
   "license": "MIT",
   "publishConfig": {
-    "access": "public",
-    "provenance": true
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "homepage": "https://github.com/imba97/hexo-unocss",
   "repository": {
@@ -53,7 +53,6 @@
     "@iconify/json": "^2.2.163"
   },
   "dependencies": {
-    "chokidar": "^3.6.0",
     "unconfig": "^0.3.12"
   }
 }
