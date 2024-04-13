@@ -7,8 +7,9 @@ interface Config {
    * 是否开启插件
    */
   isEnabled: boolean
+
   /**
-   * 是否开启插件
+   * css 文件
    */
   cssFile: string
 
@@ -18,9 +19,9 @@ interface Config {
   writeCssFile: string
 
   /**
-   * 文章目录监听路径
+   * 文章路径
    */
-  posts: string
+  patterns: string
 }
 
 const cssFile = get(hexo.config, 'unocss.file', 'css/uno.css')
@@ -29,5 +30,5 @@ export const config = <Config>{
   isEnabled: get(hexo.config, 'unocss.enabled', false),
   cssFile,
   writeCssFile: resolve(hexo.source_dir, cssFile),
-  posts: get(hexo.config, 'unocss.posts', 'source/_posts')
+  patterns: get(hexo.config, 'unocss.patterns', 'source/**/*.md')
 }

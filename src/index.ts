@@ -1,14 +1,10 @@
 import fs from 'node:fs'
-import { watch } from 'chokidar'
+import { exec } from 'node:child_process'
 import { resolve as pathResolve } from 'node:path'
 
 import { once } from '@/utils'
-import { readFiles } from '@/utils/fs'
 import { config } from '@/utils/config'
-import { unocssGenerateCss } from '@/utils/unocss'
 import { IS_DEV, IS_GENERATE } from '@/utils/constants'
-
-const contentMap: Map<string, string> = new Map()
 
 // hexo after init
 hexo.extend.filter.register('after_init', async () => {
@@ -24,24 +20,14 @@ hexo.extend.filter.register('after_post_render', async (data) => {
 
 // 加载 uno.css
 hexo.extend.injector.register('head_end', () => {
+  if (!config.isEnabled) {
+    return ''
+  }
+
   const css = hexo.extend.helper.get('css').bind(hexo)
   // hexo 生成 <link />
   return css(config.cssFile)
 })
-
-/**
- * UnoCSS 初始化
- */
-const unocssInitialization = async () => {
-  const files = readFiles(config.posts)
-
-  files.forEach((file) => {
-    const content = fs.readFileSync(file, 'utf-8')
-    contentMap.set(file, content)
-  })
-
-  await unocssGenerateCss(contentMap)
-}
 
 const generateCss = once(async () => {
   // 未开启
@@ -60,35 +46,21 @@ const generateCss = once(async () => {
     return Promise.resolve(true)
   }
 
-  if (IS_GENERATE) {
-    return unocssInitialization()
-  }
+  const files = Array.isArray(config.patterns)
+    ? config.patterns.map((path) => `"${path}"`).join(' ')
+    : config.patterns
 
   return new Promise((resolve) => {
-    const watcher = watch(config.posts)
+    hexo.log.info('Start UnoCSS!')
 
-    // 监听文件初始化
-    watcher.on('ready', async () => {
-      await unocssInitialization()
-      hexo.log.info('UnoCSS Watcher started')
+    const command = `npx unocss ${files} -o "${config.writeCssFile}" ${IS_DEV ? '-w' : '-m'}`
 
+    exec(command, () => {
       resolve(true)
     })
 
-    // 监听文件修改
-    watcher.on('change', (path) => {
-      contentMap.set(path, fs.readFileSync(path, 'utf-8'))
-      unocssGenerateCss(contentMap)
-    })
-
-    // 监听文件删除
-    watcher.on('unlink', (path) => {
-      if (!contentMap.has(path)) {
-        return
-      }
-
-      contentMap.delete(path)
-      unocssGenerateCss(contentMap)
-    })
+    if (IS_DEV) {
+      resolve(true)
+    }
   })
 })
