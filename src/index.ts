@@ -20,7 +20,7 @@ hexo.extend.filter.register('after_post_render', async (data) => {
 
 // 加载 uno.css
 hexo.extend.injector.register('head_end', () => {
-  if (!config.isEnabled) {
+  if (!config.isEnable) {
     return ''
   }
 
@@ -31,7 +31,7 @@ hexo.extend.injector.register('head_end', () => {
 
 const generateCss = once(async () => {
   // 未开启
-  if (!config.isEnabled) {
+  if (!config.isEnable) {
     const cssResolvePath = pathResolve(hexo.source_dir, config.cssFile)
 
     // 删除文件
