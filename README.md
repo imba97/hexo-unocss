@@ -1,6 +1,6 @@
 # hexo-unocss
 
-支持在文章中使用 `unocss`
+支持在文章中使用 UnoCSS
 
 查看 [Demo](https://imba97.cn/archives/775/)
 
@@ -8,7 +8,7 @@
 
 ## 安装依赖
 
-安装插件和相关依赖
+安装插件和 UnoCSS
 
 ```bash
 npm install hexo-unocss unocss
@@ -43,9 +43,9 @@ unocss:
   ]
 ```
 
-## unocss
+## UnoCSS 配置
 
-配置完全沿用 `unocss` 的配置，详情请参考 [https://unocss.dev/config/](https://unocss.dev/config/)
+配置完全沿用 UnoCSS 的配置，详情请参考 [https://unocss.dev/config/](https://unocss.dev/config/)
 
 在根目录下新建 `uno.config.ts`，推荐以下配置。包含基础写法、属性写法、icon 的预设配置
 
