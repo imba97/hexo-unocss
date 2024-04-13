@@ -51,6 +51,8 @@ const generateCss = once(async () => {
     : config.patterns
 
   return new Promise((resolve) => {
+    hexo.log.info('Start UnoCSS!')
+
     const command = `npx unocss ${files} -o "${config.writeCssFile}" ${IS_DEV ? '-w' : '-m'}`
 
     exec(command, () => {
