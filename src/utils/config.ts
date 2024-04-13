@@ -6,7 +6,7 @@ interface Config {
   /**
    * 是否开启插件
    */
-  isEnabled: boolean
+  isEnable: boolean
 
   /**
    * css 文件
@@ -27,7 +27,7 @@ interface Config {
 const cssFile = get(hexo.config, 'unocss.file', 'css/uno.css')
 
 export const config = <Config>{
-  isEnabled: get(hexo.config, 'unocss.enabled', false),
+  isEnable: get(hexo.config, 'unocss.enable', false),
   cssFile,
   writeCssFile: resolve(hexo.source_dir, cssFile),
   patterns: get(hexo.config, 'unocss.patterns', 'source/**/*.md')
