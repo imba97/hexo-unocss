@@ -31,7 +31,7 @@ npm install @iconify/json
 ```yml
 unocss:
   # 是否启用
-  enabled: true
+  enable: true
 
   # 生成的样式文件
   # 以 source 为根目录

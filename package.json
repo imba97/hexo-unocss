@@ -1,6 +1,6 @@
 {
   "name": "hexo-unocss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Support using unocsss when writing articles",
   "main": "./dist/index.cjs",
   "type": "module",
