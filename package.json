@@ -7,6 +7,7 @@
   "scripts": {
     "stub": "cross-env NODE_ENV=development unbuild --stub",
     "build": "cross-env NODE_ENV=production unbuild",
+    "release": "bumpp",
     "lint": "eslint . --fix"
   },
   "files": [
@@ -35,6 +36,7 @@
     "@types/node": "^20.10.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "bumpp": "^9.4.1",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
