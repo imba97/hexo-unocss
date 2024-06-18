@@ -26,7 +26,7 @@ hexo.extend.injector.register('head_end', () => {
 
   const css = hexo.extend.helper.get('css').bind(hexo)
   // hexo 生成 <link />
-  return css(config.cssFile)
+  return css(`${config.cssFile}?t=${new Date().getTime()}`)
 })
 
 const generateCss = once(async () => {
