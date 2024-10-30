@@ -1,29 +1,10 @@
 {
   "name": "hexo-unocss",
+  "type": "module",
   "version": "1.0.4",
   "description": "Support using unocsss when writing articles",
-  "main": "./dist/index.cjs",
-  "type": "module",
-  "scripts": {
-    "stub": "cross-env NODE_ENV=development unbuild --stub",
-    "build": "cross-env NODE_ENV=production unbuild",
-    "release": "bumpp",
-    "lint": "eslint . --fix"
-  },
-  "files": [
-    "./dist/index.cjs"
-  ],
-  "keywords": [
-    "hexo",
-    "plugin",
-    "unocss"
-  ],
   "author": "imba97",
   "license": "MIT",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
-  },
   "homepage": "https://github.com/imba97/hexo-unocss",
   "repository": {
     "type": "git",
@@ -32,7 +13,31 @@
   "bugs": {
     "url": "https://github.com/imba97/hexo-unocss/issues"
   },
+  "keywords": [
+    "hexo",
+    "plugin",
+    "unocss"
+  ],
+  "main": "./dist/index.cjs",
+  "files": [
+    "./dist/index.cjs"
+  ],
+  "scripts": {
+    "prepare": "simple-git-hooks",
+    "stub": "cross-env NODE_ENV=development unbuild --stub",
+    "build": "cross-env NODE_ENV=production unbuild",
+    "lint": "eslint --cache --flag unstable_ts_config",
+    "release": "bumpp"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "optionalDependencies": {
+    "@iconify/json": "^2.2.265"
+  },
   "devDependencies": {
+    "@imba97/eslint-config": "^0.0.4",
     "@types/node": "^20.17.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
@@ -41,11 +46,16 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
     "hexo": "^7.3.0",
+    "lint-staged": "^15.2.10",
     "rimraf": "^5.0.10",
+    "simple-git-hooks": "^2.11.1",
     "typescript": "^5.6.3",
     "unbuild": "^2.0.0"
   },
-  "optionalDependencies": {
-    "@iconify/json": "^2.2.265"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --cache --flag unstable_ts_config --fix"
   }
 }

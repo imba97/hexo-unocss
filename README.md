@@ -35,12 +35,11 @@ unocss:
 
   # 生成的样式文件
   # 以 source 为根目录
-  file: "css/uno.css"
+  file: css/uno.css
 
   # 扫描文件
-  patterns: [
-    "source/**/*.md"
-  ]
+  patterns:
+    - 'source/**/*.md'
 ```
 
 ## UnoCSS 配置
@@ -50,7 +49,7 @@ unocss:
 在根目录下新建 `uno.config.ts`，推荐以下配置。包含基础写法、属性写法、icon 的预设配置
 
 ```typescript
-import { defineConfig, presetUno, presetAttributify, presetIcons } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [presetUno(), presetAttributify(), presetIcons()],

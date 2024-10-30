@@ -1,18 +1,14 @@
-export function once<T extends Function>(this: unknown, fn: T): T {
-  const _this = this
+export function once<T extends (...args: any[]) => any>(fn: T): T {
   let didCall = false
-  let result: unknown
+  let result: ReturnType<T>
 
-  return function () {
-    if (didCall) {
-      return result
+  return function (this: unknown, ...args: Parameters<T>): ReturnType<T> {
+    if (!didCall) {
+      didCall = true
+      result = fn.apply(this, args)
     }
-
-    didCall = true
-    result = fn.apply(_this, arguments)
-
     return result
-  } as unknown as T
+  } as T
 }
 
 export function get(obj: any, path: string, defaultValue: any = undefined) {
