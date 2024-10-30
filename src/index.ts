@@ -1,10 +1,13 @@
 import fs from 'node:fs'
+import { createRequire } from 'node:module'
 import { exec } from 'node:child_process'
 import { resolve as pathResolve } from 'node:path'
 
 import { once } from './utils'
 import { config } from './utils/config'
 import { IS_DEV, IS_GENERATE } from './utils/constants'
+
+const require = createRequire(import.meta.url)
 
 const generateCss = once(async () => {
   // 未开启
@@ -30,7 +33,9 @@ const generateCss = once(async () => {
   return new Promise((resolve) => {
     hexo.log.info('Start UnoCSS!')
 
-    const command = `npx unocss ${files} -o "${config.writeCssFile}" ${IS_DEV ? '-w' : '-m'}`
+    const cliIndex = require.resolve('@unocss/cli')
+    const cli = pathResolve(cliIndex, '..', '..', 'bin', 'unocss.mjs')
+    const command = `node ${cli} ${files} -o "${config.writeCssFile}" ${IS_DEV ? '-w' : '-m'}`
 
     exec(command, () => {
       resolve(true)

@@ -33,6 +33,9 @@
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
+  "dependencies": {
+    "@unocss/cli": "latest"
+  },
   "optionalDependencies": {
     "@iconify/json": "^2.2.265"
   },
