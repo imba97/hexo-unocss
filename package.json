@@ -2,6 +2,7 @@
   "name": "hexo-unocss",
   "type": "module",
   "version": "1.0.5",
+  "packageManager": "pnpm@9.12.3",
   "description": "Support using unocsss when writing articles",
   "author": "imba97",
   "license": "MIT",
