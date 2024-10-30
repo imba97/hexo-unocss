@@ -11,7 +11,7 @@
 安装插件和 UnoCSS
 
 ```bash
-npm install hexo-unocss unocss
+pnpm install hexo-unocss unocss
 ```
 
 ## 使用图标（可选）
@@ -19,7 +19,7 @@ npm install hexo-unocss unocss
 全量安装图标库
 
 ```bash
-npm install @iconify/json
+pnpm install @iconify/json
 ```
 
 图标站：[Icônes](https://icones.js.org/)
