@@ -1,6 +1,13 @@
 .DS_Store
-pnpm-lock.yaml
+._*
+.cache
+.project
+.settings
+.tmproj
+.eslintcache
 
-/build
-/dist
-/node_modules
+.svn
+.idea
+.history
+node_modules
+dist
