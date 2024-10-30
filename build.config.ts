@@ -2,8 +2,9 @@ import process from 'node:process'
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  entries: ['src/index'],
-  outDir: './dist',
+  entries: [
+    'src/index'
+  ],
   clean: true,
   declaration: true,
   rollup: {
