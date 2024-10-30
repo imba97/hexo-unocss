@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 
-import { get } from '@/utils'
+import { get } from '../utils'
 
 interface Config {
   /**
