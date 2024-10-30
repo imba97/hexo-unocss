@@ -1,7 +1,7 @@
 {
   "name": "hexo-unocss",
   "type": "module",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Support using unocsss when writing articles",
   "author": "imba97",
   "license": "MIT",
