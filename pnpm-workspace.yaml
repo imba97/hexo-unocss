@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - esbuild
+  - hexo-util
+  - simple-git-hooks
