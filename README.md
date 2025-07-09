@@ -44,15 +44,37 @@ unocss:
 
 ## UnoCSS 配置
 
-配置完全沿用 UnoCSS 的配置，详情请参考 [https://unocss.dev/config/](https://unocss.dev/config/)
+详情请参考 [https://unocss.dev/config/](https://unocss.dev/config/)
 
 在根目录下新建 `uno.config.ts`，推荐以下配置。包含基础写法、属性写法、icon 的预设配置
 
 ```typescript
-import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetWind3,
+  transformerDirectives,
+  transformerVariantGroup
+} from 'unocss'
 
 export default defineConfig({
-  presets: [presetUno(), presetAttributify(), presetIcons()],
+  presets: [
+    presetWind3(),
+    presetAttributify(),
+    presetIcons({
+      extraProperties: {
+        'display': 'inline-block',
+        'height': '1.2em',
+        'width': '1.2em',
+        'vertical-align': 'text-bottom'
+      }
+    })
+  ],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup()
+  ],
   content: {
     pipeline: {
       include: [/\.(md)($|\?)/]
