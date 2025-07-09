@@ -1,7 +1,7 @@
 {
   "name": "hexo-unocss",
   "type": "module",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "packageManager": "pnpm@10.13.0",
   "description": "Support using unocsss when writing articles",
   "author": "imba97",
