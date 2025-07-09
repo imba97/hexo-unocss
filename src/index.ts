@@ -1,6 +1,6 @@
+import { exec } from 'node:child_process'
 import fs from 'node:fs'
 import { createRequire } from 'node:module'
-import { exec } from 'node:child_process'
 import { resolve as pathResolve } from 'node:path'
 
 import { once } from './utils'
